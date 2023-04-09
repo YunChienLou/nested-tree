@@ -8,8 +8,8 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 firebase host URL: https://nested-tree-4ed4b.web.app/
 
-how to use in local: __
-  1.pull this repository __
-  2.npm run install in terminal __
-  3.npm run dev __
+how to use in local: <br/>
+  1.pull this repository <br/>
+  2.npm run install in terminal <br/>
+  3.npm run dev <br/>
   4.visit http://127.0.0.1:5173/ in local brower
