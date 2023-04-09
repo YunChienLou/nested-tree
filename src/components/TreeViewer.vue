@@ -1,9 +1,9 @@
 <template lang="pug">
-div.text-start
+div.text-start.m-4
     div.node(:style="{'margin-left': `${level * 20}px`}" v-on:click="isShow = !isShow").flex
-        span(v-if="isParent") {{ isShow ? '[-]' : '[+]' }}
-        span(v-else) $
-        p.mr-4 {{ node.name }}
+        span(v-if="isParent").font-bold.mr-4 {{ isShow ? '[-] ' : '[+] ' }}
+        span(v-else) 。
+        p.font-bold.mr-4 {{ node.name }}
         p.text-red-400  {{ node.value }}
     TreeViewer(
         v-if="isShow"
@@ -29,6 +29,6 @@ const isParent = computed(() => {
 
 <style scoped>
 .node {
-  color: blue;
+  color: rgb(0, 127, 195);
 }
 </style>

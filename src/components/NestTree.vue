@@ -10,11 +10,11 @@
                 | Edit
         TreeEditor(:node="props.root" :parent-name="''")
         .grid.grid-cols-5.gap-4 
-            input#Title.col-span-2.bg-gray-300.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-500.leading-tight(class='focus:outline-none focus:shadow-outline', type='text', placeholder='Title')
+            input#Title.col-span-2.bg-gray-300.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-500.leading-tight(class='focus:outline-none focus:shadow-outline', type='text', placeholder='Title' v-model="titleRef")
 
-            input#Value.col-span-2.bg-gray-300.shadow.appearance-none.border.border.rounded.w-full.py-2.px-3.text-gray-500.leading-tight(class='focus:outline-none focus:shadow-outline', type='text', placeholder='Value')
+            input#Value.col-span-2.bg-gray-300.shadow.appearance-none.border.border.rounded.w-full.py-2.px-3.text-gray-500.leading-tight(class='focus:outline-none focus:shadow-outline', type='text', placeholder='Value' v-model="valueRef")
 
-            button.col-span-1.bg-blue-500.text-white.font-bold.py-1.px-4.rounded(class='hover:bg-blue-700 focus:outline-none focus:shadow-outline', type='button') +
+            button.col-span-1.bg-blue-500.text-white.font-bold.py-1.px-4.rounded(class='hover:bg-blue-700 focus:outline-none focus:shadow-outline', type='button' @click="addHandler") +
 
     .bg-orange-200.shadow-md.rounded.text-gray-500 
         TreeViewer(:node="props.root")
@@ -23,8 +23,23 @@
 <script setup>
 import TreeEditor from "./TreeEditor.vue";
 import TreeViewer from "./TreeViewer.vue";
+
+import { useStore } from "vuex";
+import { ref, computed } from "vue";
 const props = defineProps({
   root: { type: Object, required: true },
 });
+
+const titleRef = ref("Root.");
+const valueRef = ref("");
+
+const titleArr = computed(() => {
+  return titleRef.value.split(".");
+});
+
+const store = useStore();
+const addHandler = () => {
+  store.commit("addNode", { arr: titleArr.value, value: valueRef.value });
+};
 </script>
 <style scoped></style>
